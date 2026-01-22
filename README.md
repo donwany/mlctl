@@ -13,42 +13,7 @@ mlctl/
 └── LICENSE
 ```
 
-
----
-
-### 2. `pyproject.toml` (PyPI‑ready)
-
-```toml
-[project]
-name = "mlctl"
-version = "0.1.0"
-description = "Machine Learning Platform Control CLI"
-readme = "README.md"
-requires-python = ">=3.9"
-license = { text = "MIT" }
-authors = [
-    { name = "Theophilus Siameh" }
-]
-
-dependencies = [
-    "click>=8.1.0"
-]
-
-[project.scripts]
-mlctl = "mlctl.cli:run"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-```
-
-```bash
-mlctl --help
-```
-
----
-
-### 3. Build & Publish with `uv`
+### 2. Build & Publish with `uv`
 
 Create and activate a virtual environment:
 
@@ -64,43 +29,13 @@ uv pip install -e .
 ```
 
 Build the package:
-
 ```bash
 uv build
+
+export PYPI_TOKEN='pypi-'
+
+uv publish --username __token__ --password $PYPI_TOKEN
 ```
-
-Publish to **TestPyPI** (recommended first):
-
-```bash
-uv publish --repository testpypi
-```
-
-Publish to **PyPI** (production):
-
-```bash
-uv publish
-```
-
----
-
-### 4. Install from PyPI
-
-```bash
-pip install mlctl
-mlctl model ls
-```
-
----
-
-## Option B (Legacy – Not Recommended)
-
-This approach uses `setup.py` and `twine`. It is included only for legacy maintenance.
-
-```bash
-python setup.py sdist bdist_wheel
-twine upload dist/*
-```
----
 
 
 ## Install
@@ -113,13 +48,12 @@ pipx install git+https://github.com/donwany/mlctl.git
 # or 
 pip install git+https://github.com/donwany/mlctl.git
 
+# argcomplete
 echo "autoload -U bashcompinit && bashcompinit" >> ~/.zshrc
-
-mlctl --help
 
 ```
 
-## Demo
+## Demo: local
 
 ```bash
 # deploy model
@@ -132,4 +66,20 @@ python mlctl.py model list
 python mlctl.py data validate --dataset data.csv
 # ingest data
 python mlctl.py data ingest --format csv --source s3://data
+```
+
+## Demo: remote
+```bash
+# help
+mlctl --help
+# deploy model
+mlctl model deploy --name randomforest --env prod
+# train model
+mlctl model train --name randomforest --dataset data.csv --epochs 10
+# list model
+mlctl model list
+# validate data
+mlctl data validate --dataset data.csv
+# ingest data
+mlctl data ingest --format csv --source s3://data
 ```
