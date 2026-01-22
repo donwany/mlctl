@@ -5,7 +5,7 @@ FROM python:3.11-slim
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
-WORKDIR /app
+WORKDIR /mlctl
 
 # System deps (optional but safe)
 RUN apt-get update && apt-get install -y --no-install-recommends \
