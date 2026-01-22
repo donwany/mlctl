@@ -1,0 +1,42 @@
+name: MLCTL CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    name: Lint & Test CLI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        run: |
+          pip install --upgrade pip
+          pip install uv
+
+      - name: Install project
+        run: |
+          uv pip install -e .
+
+      - name: Run lint (ruff)
+        run: |
+          uv pip install ruff
+          ruff check .
+
+      - name: CLI smoke tests
+        run: |
+          mlctl --help
+          mlctl model list
+          mlctl model train --name test --dataset dummy.csv --epochs 1
+          mlctl data validate --dataset dummy.csv

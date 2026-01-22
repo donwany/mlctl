@@ -41,6 +41,7 @@ uv publish --username __token__ --password $PYPI_TOKEN
 ## Install
 ```bash
 pip install pipx
+
 pipx ensurepath
 
 pipx install git+https://github.com/donwany/mlctl.git
@@ -48,10 +49,29 @@ pipx install git+https://github.com/donwany/mlctl.git
 # or 
 pip install git+https://github.com/donwany/mlctl.git
 
+uv pip install git+https://github.com/donwany/mlctl.git
+
 # argcomplete
 echo "autoload -U bashcompinit && bashcompinit" >> ~/.zshrc
 
 ```
+
+## Editable Install
+```bash
+git clone https://github.com/donwany/mlctl.git
+cd mlctl
+pip install -e .
+```
+
+## Versioning via Git Tags
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+
+pip install git+https://github.com/donwany/mlctl.git@v0.1.0
+
+```
+
 
 ## Demo: local
 
@@ -82,4 +102,7 @@ mlctl model list
 mlctl data validate --dataset data.csv
 # ingest data
 mlctl data ingest --format csv --source s3://data
+
+# Global flags
+mlctl --verbose --config config.yml model list
 ```
