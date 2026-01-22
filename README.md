@@ -1,4 +1,4 @@
-# mlctl CLI
+## mlctl CLI: Machine Learning Platform Control CLI
 
 ### 1. Project Layout
 

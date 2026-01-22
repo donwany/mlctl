@@ -10,11 +10,9 @@ requires-python = ">=3.10"
 dependencies = [
     "argcomplete>=3.6.3",
     "argparse>=1.4.0",
-    "httpx>=0.28.1",
     "loguru>=0.7.3",
     "requests>=2.32.5",
-    "rich>=14.2.0",
-    "typer[all]>=0.21.1",
+    "rich>=14.2.0"
 ]
 license = { text = "MIT" }
 
