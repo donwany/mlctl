@@ -17,8 +17,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --no-cache-dir uv
 
 # Copy project
-COPY pyproject.toml uv.lock* ./
-COPY mlctl ./mlctl
+# COPY pyproject.toml uv.lock* ./
+# COPY mlctl ./mlctl
+
+# Copy project metadata first (better cache)
+COPY pyproject.toml uv.lock* README.md LICENSE ./
+
+# Copy source code (IMPORTANT FIX)
+COPY src ./src
 
 # Install CLI
 RUN uv pip install --system -e .
