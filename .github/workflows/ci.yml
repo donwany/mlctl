@@ -35,7 +35,7 @@ jobs:
 
       - name: Run lint (ruff)
         run: |
-          uv pip install ruff
+          uv pip install --system ruff
           ruff check .
 
       - name: CLI smoke tests
