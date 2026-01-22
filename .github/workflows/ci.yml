@@ -27,7 +27,11 @@ jobs:
 
       - name: Install project
         run: |
-          uv pip install -e .
+          uv pip install --system -e .
+
+      - name: Build Docker image
+        run: |
+          docker build -t mlctl .
 
       - name: Run lint (ruff)
         run: |
