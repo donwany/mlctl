@@ -1,12 +1,12 @@
 import argparse
 import logging
 import sys
-
-
+from . import __version__
 try:
     import argcomplete
 except ImportError:
     argcomplete = None
+    
 
 # --------------------------------------------------
 # Logging setup
@@ -69,6 +69,13 @@ def build_parser():
     parser.add_argument(
         "--config",
         help="Path to config file",
+    )
+    
+    parser.add_argument(
+        "--version",
+        "-v",
+        action="version",
+        version=f"%(prog)s {__version__}",
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)

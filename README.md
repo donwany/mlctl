@@ -74,13 +74,14 @@ pip install git+https://github.com/donwany/mlctl.git@v0.1.0
 
 ## Docker
 ```bash
+# build
 docker build -t mlctl .
-docker run --rm mlctl
 
+# run
+docker run --rm mlctl
 docker run --rm mlctl model list
 docker run --rm mlctl model train --name rf --dataset data.csv --epochs 5
 docker run --rm mlctl model deploy --name rf --env prod
-
 docker run --rm mlctl data validate --dataset data.csv
 
 docker run --rm \
