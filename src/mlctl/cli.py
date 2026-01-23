@@ -1,7 +1,8 @@
 import argparse
 import logging
 import sys
-from . import __version__
+from mlctl import __version__
+
 try:
     import argcomplete
 except ImportError:

@@ -23,7 +23,7 @@ RUN pip install --no-cache-dir uv
 # Copy project metadata first (better cache)
 COPY pyproject.toml uv.lock* README.md LICENSE ./
 
-# Copy source code (IMPORTANT FIX)
+# Copy source code
 COPY src ./src
 
 # Install CLI
